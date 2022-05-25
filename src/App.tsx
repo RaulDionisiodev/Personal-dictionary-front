@@ -8,6 +8,7 @@ import Login from "./components/Login.component";
 import Register from "./components/Register.component";
 import Home from "./components/Home.component";
 import EventBus from "./common/EventBus";
+import AddExpression from "./components/Add-Expression.component";
 type Props = {};
 type State = {
   showModeratorBoard: boolean,
@@ -110,6 +111,9 @@ class App extends Component<Props, State> {
             <Route exact path={["/", "/home"]} component={Home} />
             <Route exact path="/login" component={Login} />
             <Route exact path="/register" component={Register} />
+            <Route exact path="/tutorials" component={Dictionary} />
+            <Route exact path="/add" component={AddExpression} />
+            <Route path="/expressions/:id" component={Details} />
         </Switch >
         </div>
         { /*<AuthVerify logOut={this.logOut}/> */}
