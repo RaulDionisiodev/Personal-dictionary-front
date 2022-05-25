@@ -1,5 +1,5 @@
 import { Component } from "react";
-import { Routes , Route, Link } from "react-router-dom";
+import { Switch , Route, Link } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
 import AuthService from "./services/Auth.service";
@@ -106,11 +106,11 @@ class App extends Component<Props, State> {
           )}
         </nav>
         <div className="container mt-3">
-          <Routes >
-            <Route path="/" element={<Home />} />
-            <Route path="/login" element={<Login />} />
-            <Route path="/register" element={<Register />} />
-        </Routes >
+          <Switch >
+            <Route exact path={["/", "/home"]} component={Home} />
+            <Route exact path="/login" component={Login} />
+            <Route exact path="/register" component={Register} />
+        </Switch >
         </div>
         { /*<AuthVerify logOut={this.logOut}/> */}
       </div>
