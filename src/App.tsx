@@ -6,7 +6,6 @@ import AuthService from "./services/Auth.service";
 import IUser from './types/user.type';
 import Login from "./components/Login.component";
 import Register from "./components/Register.component";
-import Home from "./components/Home.component";
 import EventBus from "./common/EventBus";
 import AddExpression from "./components/Add-Expression.component";
 import Dictionary from "./components/Dictionary.component";
@@ -50,7 +49,7 @@ class App extends Component<Props, State> {
     });
   }
   render() {
-    const { currentUser, showModeratorBoard, showAdminBoard } = this.state;
+  
     return (
       <div>
         <nav className="navbar navbar-expand navbar-dark bg-dark">
@@ -58,59 +57,16 @@ class App extends Component<Props, State> {
             My Personal Dictionary
           </Link>
           <div className="navbar-nav mr-auto">
-            {showModeratorBoard && (
-              <li className="nav-item">
-                <Link to={"/mod"} className="nav-link">
-                  Moderator Board
-                </Link>
-              </li>
-            )}
-            {showAdminBoard && (
-              <li className="nav-item">
-                <Link to={"/admin"} className="nav-link">
-                  Admin Board
-                </Link>
-              </li>
-            )}
-            {currentUser && (
-              <li className="nav-item">
-                <Link to={"/user"} className="nav-link">
-                  User
-                </Link>
-              </li>
-            )}
+          <li className="nav-item">
+              <Link to={"/add"} className="nav-link">
+                Add
+              </Link>
+            </li>
           </div>
-          {currentUser ? (
-            <div className="navbar-nav ml-auto">
-              <li className="nav-item">
-                <Link to={"/profile"} className="nav-link">
-                  {currentUser.username}
-                </Link>
-              </li>
-              <li className="nav-item">
-                <a href="/login" className="nav-link" onClick={this.logOut}>
-                  LogOut
-                </a>
-              </li>
-            </div>
-          ) : (
-            <div className="navbar-nav ml-auto">
-              <li className="nav-item">
-                <Link to={"/login"} className="nav-link">
-                  Login
-                </Link>
-              </li>
-              <li className="nav-item">
-                <Link to={"/register"} className="nav-link">
-                  Sign Up
-                </Link>
-              </li>
-            </div>
-          )}
         </nav>
         <div className="container mt-3">
           <Switch >
-            <Route exact path={["/", "/home"]} component={Home} />
+            <Route exact path={["/", "/home"]} component={Dictionary} />
             <Route exact path="/login" component={Login} />
             <Route exact path="/register" component={Register} />
             <Route exact path="/dictionary" component={Dictionary} />
