@@ -2,12 +2,13 @@ import { Component } from "react";
 import { Formik, Field, Form, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import AuthService from "../services/Auth.service";
+import { RouteComponentProps } from "react-router-dom";
 
-type Props = {};
+type Props = RouteComponentProps<[]>;
 
 type State = {
   username: string,
-  email: string,
+  name: string,
   password: string,
   successful: boolean,
   message: string
@@ -19,7 +20,7 @@ export default class Register extends Component<Props, State> {
     this.handleRegister = this.handleRegister.bind(this);
     this.state = {
       username: "",
-      email: "",
+      name: "",
       password: "",
       successful: false,
       message: ""
@@ -52,15 +53,24 @@ export default class Register extends Component<Props, State> {
         .required("This field is required!"),
     });
   }
-  handleRegister(formValue: { username: string; email: string; password: string }) {
-    const { username, email, password } = formValue;
+  teste = (e : React.SyntheticEvent<HTMLFormElement>) => {
+    e.preventDefault()
+    let username = (document.getElementById("username") as HTMLInputElement).value
+    let name = (document.getElementById("name") as HTMLInputElement).value
+    let password = (document.getElementById("password") as HTMLInputElement).value
+    this.handleRegister(username, name, password)
+  }
+  formiksubmit(formValues: {username: string; name: string; password: string}){
+
+  }
+  handleRegister( username: string, name: string, password: string ) {
     this.setState({
       message: "",
       successful: false
     });
     AuthService.register(
       username,
-      email,
+      name,
       password
     ).then(
       response => {
@@ -68,6 +78,7 @@ export default class Register extends Component<Props, State> {
           message: response.data.message,
           successful: true
         });
+        this.props.history.push("/dictionary");
       },
       error => {
         const resMessage =
@@ -87,7 +98,7 @@ export default class Register extends Component<Props, State> {
     const { successful, message } = this.state;
     const initialValues = {
       username: "",
-      email: "",
+      name: "",
       password: "",
     };
     return (
@@ -101,14 +112,14 @@ export default class Register extends Component<Props, State> {
           <Formik
             initialValues={initialValues}
             validationSchema={this.validationSchema}
-            onSubmit={this.handleRegister}
+            onSubmit={this.formiksubmit}
           >
-            <Form>
+            <Form onSubmit={this.teste.bind(this)}>
               {!successful && (
                 <div>
                   <div className="form-group">
                     <label htmlFor="username"> Username </label>
-                    <Field name="username" type="text" className="form-control" />
+                    <Field id="username" name="username" type="text" className="form-control" />
                     <ErrorMessage
                       name="username"
                       component="div"
@@ -116,10 +127,10 @@ export default class Register extends Component<Props, State> {
                     />
                   </div>
                   <div className="form-group">
-                    <label htmlFor="email"> Email </label>
-                    <Field name="email" type="email" className="form-control" />
+                    <label htmlFor="name"> Name </label>
+                    <Field id="name" name="name" type="text" className="form-control" />
                     <ErrorMessage
-                      name="email"
+                      name="name"
                       component="div"
                       className="alert alert-danger"
                     />
@@ -127,6 +138,7 @@ export default class Register extends Component<Props, State> {
                   <div className="form-group">
                     <label htmlFor="password"> Password </label>
                     <Field
+                      id="password"
                       name="password"
                       type="password"
                       className="form-control"
