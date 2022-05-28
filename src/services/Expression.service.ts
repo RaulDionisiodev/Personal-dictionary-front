@@ -8,7 +8,7 @@ class ExpresionDataService{
     }  
 
     get(id: number){
-        return http.get<Expression>(`/expression/${id}`)
+        return http.get<Expression>(`/expression/id=${id}`)
     }
 
     create(data: Expression){

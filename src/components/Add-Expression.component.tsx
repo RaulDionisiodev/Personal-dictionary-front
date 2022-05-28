@@ -65,7 +65,50 @@ export default class AddExpression extends Component<Props, State> {
   }
   render() {
     return(
-        <p>Work in progress</p>
+        
+      <div className="submit-form">
+        <div>
+          <div className="form-group">
+            <label htmlFor="text">Text</label>
+            <input
+              type="text"
+              className="form-control"
+              id="text"
+              required
+              value={this.state.text}
+              onChange={this.onChangeText}
+              name="text"
+            />
+          </div>
+          <div className="form-group">
+            <label htmlFor="translation">Translation</label>
+            <input
+              type="text"
+              className="form-control"
+              id="translation"
+              required
+              value={this.state.translation}
+              onChange={this.onChangeTranslatiom}
+              name="translation"
+            />
+          </div>
+          <div className="form-group">
+            <label htmlFor="example">Example</label>
+            <input
+              type="text"
+              className="form-control"
+              id="example"
+              required
+              value={this.state.examples}
+              onChange={this.onChangeExamples}
+              name="example"
+            />
+          </div>
+          <button onClick={this.saveExpression} className="btn btn-success">
+            Submit
+          </button>
+        </div>
+    </div>
     )
   }
 }
