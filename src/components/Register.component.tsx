@@ -53,7 +53,7 @@ export default class Register extends Component<Props, State> {
         .required("This field is required!"),
     });
   }
-  teste = (e : React.SyntheticEvent<HTMLFormElement>) => {
+  register = (e : React.SyntheticEvent<HTMLFormElement>) => {
     e.preventDefault()
     let username = (document.getElementById("username") as HTMLInputElement).value
     let name = (document.getElementById("name") as HTMLInputElement).value
@@ -114,7 +114,7 @@ export default class Register extends Component<Props, State> {
             validationSchema={this.validationSchema}
             onSubmit={this.formiksubmit}
           >
-            <Form onSubmit={this.teste.bind(this)}>
+            <Form onSubmit={this.register.bind(this)}>
               {!successful && (
                 <div>
                   <div className="form-group">
