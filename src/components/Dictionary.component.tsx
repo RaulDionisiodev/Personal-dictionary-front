@@ -122,7 +122,7 @@ export default class Dictionary extends Component<Props, State>{
               <h4>Expression</h4>
               <div>
                 <label>
-                  <strong>text:</strong>
+                  <strong>Text:</strong>
                 </label>{" "}
                 {currentExpression.text}
               </div>
@@ -137,7 +137,11 @@ export default class Dictionary extends Component<Props, State>{
                 <label>
                   <strong>Examples:</strong>
                 </label>{" "}
-                {currentExpression.examples.map( (example, index) => example)}
+                <ul>
+                  {currentExpression.exampleList.map( (example, index) =>
+                    <li key={index}>{example.text}</li>)}
+                </ul>
+                
               </div>
               <Link
                 to={"/expression/" + currentExpression.id}

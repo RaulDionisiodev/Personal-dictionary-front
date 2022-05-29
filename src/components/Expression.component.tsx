@@ -25,7 +25,7 @@ export default class ExpressionDetail extends Component<Props, State> {
         id: null,
         text: "",
         translation: "",
-        examples:[],
+        exampleList:[],
       },
       message: "",
     };
@@ -70,7 +70,7 @@ export default class ExpressionDetail extends Component<Props, State> {
       id: this.state.currentExpression.id,
       text: this.state.currentExpression.text,
       translation: this.state.currentExpression.translation,
-      examples: this.state.currentExpression.examples
+      exampleList: this.state.currentExpression.exampleList
     };
     ExpressionDataService.update(data)
       .then((response: any) => {

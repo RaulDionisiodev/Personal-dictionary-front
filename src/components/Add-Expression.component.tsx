@@ -1,6 +1,7 @@
 import { Component, ChangeEvent } from "react";
 import ExpresionDataService from "../services/Expression.service";
 import Expression from '../types/expression.type';
+import Example from '../types/example'
 
 type Props = {};
 
@@ -18,7 +19,7 @@ export default class AddExpression extends Component<Props, State> {
       id: null,
       text: "",
       translation: "",
-      examples: []
+      exampleList: []
     };
   }
   onChangeText(e: ChangeEvent<HTMLInputElement>) {
@@ -33,14 +34,14 @@ export default class AddExpression extends Component<Props, State> {
   }
   onChangeExamples(e: ChangeEvent<HTMLInputElement>){
     this.setState({
-        examples: [...this.state.examples, e.target.value]
+      exampleList: [...this.state.exampleList, {id:"", text: e.target.value}]
     })      
   }
   saveExpression() {
     const data: Expression = {
       text: this.state.text,
       translation: this.state.translation,
-      examples: this.state.examples
+      exampleList: this.state.exampleList
     };
     ExpresionDataService.create(data)
       .then((response: any) => {
@@ -99,7 +100,7 @@ export default class AddExpression extends Component<Props, State> {
               className="form-control"
               id="example"
               required
-              value={this.state.examples}
+              value="Insert the example list"
               onChange={this.onChangeExamples}
               name="example"
             />
