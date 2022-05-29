@@ -8,8 +8,8 @@ class AuthService {
         password
       })
       .then(response => {
-        if (response.data.accessToken) {
-          localStorage.setItem("user", JSON.stringify(response.data));
+        if (response.headers.authorization) {
+          localStorage.setItem("user", JSON.stringify(response.headers.authorization));
         }
         return response.data;
       });
@@ -18,7 +18,7 @@ class AuthService {
     localStorage.removeItem("user");
   }
   register(username: string, name: string, password: string) {
-    return axios.post(API_URL + "user", {
+    return axios.put(API_URL + "user", {
       username,
       name,
       password
