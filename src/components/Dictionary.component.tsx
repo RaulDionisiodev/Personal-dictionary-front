@@ -91,7 +91,8 @@ export default class Dictionary extends Component<Props, State>{
               <button
                 className="btn btn-outline-secondary"
                 type="button"
-                onClick={this.searchText}
+                onClick={ 
+                  this.state.searchText ? this.searchText : this.retrieveExpression}
               >
                 Search
               </button>

@@ -1,7 +1,7 @@
 import { Component, ChangeEvent } from "react";
 import ExpresionDataService from "../services/Expression.service";
 import Expression from '../types/expression.type';
-import Example from '../types/example'
+
 
 type Props = {};
 
