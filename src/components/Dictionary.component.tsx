@@ -133,7 +133,12 @@ export default class Dictionary extends Component<Props, State>{
                 </label>{" "}
                 {currentExpression.translation}
               </div>
-              
+              <div>
+                <label>
+                  <strong>Word class:</strong>
+                </label>{" "}
+                {currentExpression.category.categoryName}
+              </div>
               <div>
                 <label>
                   <strong>Examples:</strong>
