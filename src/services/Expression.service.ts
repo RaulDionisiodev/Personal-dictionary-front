@@ -1,3 +1,4 @@
+import NewExpression  from "../types/newExpressionDto.type";
 import http from "../common/http-common";
 import Expression from "../types/expression.type"
 
@@ -11,8 +12,8 @@ class ExpresionDataService{
         return http.get<Expression>(`/expression/id=${id}`)
     }
 
-    create(data: Expression){
-        return http.post<Expression>("/expression")
+    create(data: NewExpression){
+        return http.post<Expression>("/expression", data)
     }
 
     update(data: Expression){
