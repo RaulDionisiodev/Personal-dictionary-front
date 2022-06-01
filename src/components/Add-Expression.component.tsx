@@ -17,6 +17,7 @@ export default class AddExpression extends Component<Props, State> {
     super(props);
     this.onChangeText = this.onChangeText.bind(this);
     this.onChangeTranslatiom = this.onChangeTranslatiom.bind(this);
+    this.onChangeCategory = this.onChangeCategory.bind(this);
     this.onChangeFirstExample = this.onChangeFirstExample.bind(this);
     this.onChangeSecondExample = this.onChangeSecondExample.bind(this);
     this.onChangeThirdExample = this.onChangeThirdExample.bind(this);
@@ -28,6 +29,7 @@ export default class AddExpression extends Component<Props, State> {
       id: null,
       text: "",
       translation: "",
+      category: "",
       first_example: "",
       second_example: "",
       third_example: "",
@@ -43,6 +45,12 @@ export default class AddExpression extends Component<Props, State> {
     this.setState({
       translation: e.target.value
     });
+  }
+  onChangeCategory(e: ChangeEvent<HTMLSelectElement>){
+    console.log(e.target.value)
+    this.setState({
+      category: e.target.value
+    })
   }
   onChangeFirstExample(e: ChangeEvent<HTMLInputElement>){
     this.setState({
@@ -68,7 +76,7 @@ export default class AddExpression extends Component<Props, State> {
     const data: NewExpression = {
       text: this.state.text,
       translation: this.state.translation,
-      category: "noum",
+      category: this.state.category,
       exampleList: this.createExample(),
     };
     ExpresionDataService.create(data)
@@ -129,6 +137,21 @@ export default class AddExpression extends Component<Props, State> {
               onChange={this.onChangeTranslatiom}
               name="translation"
             />
+          </div>
+          <div className="form-group">
+          <label htmlFor="category">Word Classes</label>
+              <select name="category" id="category" className="custom-select"
+                  value={this.state.category} onChange={this.onChangeCategory}>
+                  <option defaultValue={""}>Choose...</option>
+                  <option value="Noum">Noum</option>
+                  <option value="Adjective">Adjective</option>
+                  <option value="Verb">Verb</option>
+                  <option value="Adverb">Adverb</option>
+                  <option value="Preposition">Preposition</option>
+                  <option value="Conjunction">Conjunction</option>
+                  <option value="Pronoun">Pronoun</option>
+                  <option value="Interjection">Interjection</option>
+              </select>
           </div>
           <div className="form-group">
             <label htmlFor="example">Example #1</label>
