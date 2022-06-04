@@ -8,7 +8,7 @@ class ExpresionDataService{
         return http.get<Array<Expression>>("/expression")
     }  
 
-    get(id: number){
+    get(id: string){
         return http.get<Expression>(`/expression/id=${id}`)
     }
 
@@ -16,8 +16,8 @@ class ExpresionDataService{
         return http.post<Expression>("/expression", data)
     }
 
-    update(data: Expression){
-        return http.post<Expression>("/update")
+    update(data: NewExpression){
+        return http.post<Expression>("/expression/update", data)
     }
 
     delete(id: number){
