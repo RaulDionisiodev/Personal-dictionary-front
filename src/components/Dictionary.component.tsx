@@ -39,7 +39,6 @@ export default class Dictionary extends Component<Props, State>{
         this.setState({
           expression: response.data
         });
-        console.log(response.data);
       })
       .catch((e: Error) => {
         console.log(e);
@@ -150,7 +149,7 @@ export default class Dictionary extends Component<Props, State>{
                 
               </div>
               <Link
-                to={"/expression/" + currentExpression.id}
+                to={"/expressions/" + currentExpression.expressionId}
                 className="badge badge-warning"
               >
                 Edit
