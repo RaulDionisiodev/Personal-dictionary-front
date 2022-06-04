@@ -11,6 +11,7 @@ type Props = RouteComponentProps<RouterProps>;
 type State = {
   currentExpression: Expression;
   message: string;
+  newExample: string;
 }
 export default class ExpressionDetail extends Component<Props, State> {
   constructor(props: Props) {
@@ -30,6 +31,7 @@ export default class ExpressionDetail extends Component<Props, State> {
         },
         exampleList: [],
       },
+      newExample: "",
       message: "",
     };
   }
@@ -148,7 +150,35 @@ export default class ExpressionDetail extends Component<Props, State> {
                 />
               </div>
               <div className="form-group">
-                <label htmlFor="translation">Translation</label>
+                {currentExpression.exampleList.length > 0 ? (
+                  <>
+                   {currentExpression.exampleList.map((example, index) => 
+                    <>
+                    <label htmlFor="translation">Example {index + 1} </label>
+                    <input
+                    type="text"
+                    className="form-control"
+                    id="translation"
+                    key={index}
+                    value={example.text}
+                    onChange={this.onChangeTranslation}
+                  /> 
+                  </>
+                  )} 
+                  </>
+                ) : (
+                  <>
+                  <label htmlFor="translation">Examples</label>
+                  <input
+                    type="text"
+                    className="form-control"
+                    id="translation"
+                    value={this.state.newExample}
+                    onChange={this.onChangeTranslation}
+                  />
+                  </>
+                ) }
+                {/* 
                 {currentExpression.exampleList.map((example, index) =>
                   <input
                     type="text"
@@ -157,7 +187,7 @@ export default class ExpressionDetail extends Component<Props, State> {
                     key={index}
                     value={example.text}
                     onChange={this.onChangeTranslation}
-                  />)}
+                  />)} */}
               </div>
               <div className="form-group">
                 <label htmlFor="category">Word Classes</label>
