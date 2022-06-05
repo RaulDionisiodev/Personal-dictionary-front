@@ -78,7 +78,7 @@ export default class Register extends Component<Props, State> {
           message: response.data.message,
           successful: true
         });
-        this.props.history.push("/dictionary");
+        this.props.history.push("/login");
       },
       error => {
         const resMessage =
