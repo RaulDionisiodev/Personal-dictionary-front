@@ -78,6 +78,7 @@ export default class Register extends Component<Props, State> {
           message: response.data.message,
           successful: true
         });
+        alert("User created successfully, please log in")
         this.props.history.push("/login");
       },
       error => {
@@ -114,7 +115,7 @@ export default class Register extends Component<Props, State> {
             validationSchema={this.validationSchema}
             onSubmit={this.formiksubmit}
           >
-            <Form onSubmit={this.register.bind(this)}>
+            <Form autoComplete="off" onSubmit={this.register.bind(this)}>
               {!successful && (
                 <div>
                   <div className="form-group">
