@@ -76,9 +76,9 @@ export default class ExpressionDetail extends Component<Props, State> {
     })   
   }
   createStringList(){
-    const exampleList: String[] = [this.state.first_example,this.state.second_example, 
+    let exampleList: String[] = [this.state.first_example,this.state.second_example, 
       this.state.third_example, this.state.fourth_example]
-     return exampleList;
+     return  exampleList.filter(example => example !== "");
   }
 
   getExpression(id: string) {
@@ -100,6 +100,7 @@ export default class ExpressionDetail extends Component<Props, State> {
         console.log(e);
       });
   }
+
   updateExpression() {
     const data: NewExpressionDTO = {
       id: this.state.id,
@@ -150,13 +151,14 @@ export default class ExpressionDetail extends Component<Props, State> {
       <div>
         {this.state ? (
           <div className="edit-form">
-            <h4>Tutorial</h4>
+            <h4>Expression</h4>
             <form>
               <div className="form-group">
                 <label htmlFor="text">Text</label>
                 <input
                   type="text"
                   className="form-control"
+                  autoComplete="off"
                   id="text"
                   value={this.state.text}
                   onChange={this.onChangeText}
@@ -168,6 +170,7 @@ export default class ExpressionDetail extends Component<Props, State> {
                   type="text"
                   className="form-control"
                   id="translation"
+                  autoComplete="off"
                   value={this.state.translation}
                   onChange={this.onChangeTranslation}
                 />
@@ -193,7 +196,7 @@ export default class ExpressionDetail extends Component<Props, State> {
               type="text"
               className="form-control"
               id="example1"
-              required
+              autoComplete="off"
               value={this.state.first_example}
               onChange={this.onChangeFirstExample}
               name="example1"
@@ -205,7 +208,7 @@ export default class ExpressionDetail extends Component<Props, State> {
               type="text"
               className="form-control"
               id="example2"
-              required
+              autoComplete="off"
               value={this.state.second_example}
               onChange={this.onChangeSecondExample}
               name="example2"
@@ -217,7 +220,7 @@ export default class ExpressionDetail extends Component<Props, State> {
               type="text"
               className="form-control"
               id="example3"
-              required
+              autoComplete="off"
               value={this.state.third_example}
               onChange={this.onChangeThirdExample}
               name="example3"
@@ -229,7 +232,7 @@ export default class ExpressionDetail extends Component<Props, State> {
               type="text"
               className="form-control"
               id="example4"
-              required
+              autoComplete="off"
               value={this.state.fourth_example}
               onChange={this.onChangeFourthExample}
               name="example4"
