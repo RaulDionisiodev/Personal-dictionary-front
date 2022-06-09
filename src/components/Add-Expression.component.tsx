@@ -103,9 +103,9 @@ export default class AddExpression extends Component<Props, State> {
   }
 
   createExample(){
-    const exampleList: String[] = [this.state.first_example,this.state.second_example, 
+    let exampleList: String[] = [this.state.first_example,this.state.second_example, 
       this.state.third_example, this.state.fourth_example]
-     return exampleList;
+     return  exampleList.filter(example => example !== "");
 }
 
 
@@ -121,6 +121,7 @@ export default class AddExpression extends Component<Props, State> {
               className="form-control"
               id="text"
               required
+              autoComplete="off"
               value={this.state.text}
               onChange={this.onChangeText}
               name="text"
@@ -133,6 +134,7 @@ export default class AddExpression extends Component<Props, State> {
               className="form-control"
               id="translation"
               required
+              autoComplete="off"
               value={this.state.translation}
               onChange={this.onChangeTranslatiom}
               name="translation"
@@ -159,7 +161,7 @@ export default class AddExpression extends Component<Props, State> {
               type="text"
               className="form-control"
               id="example1"
-              required
+              autoComplete="off"
               value={this.state.first_example}
               onChange={this.onChangeFirstExample}
               name="example1"
@@ -171,7 +173,7 @@ export default class AddExpression extends Component<Props, State> {
               type="text"
               className="form-control"
               id="example2"
-              required
+              autoComplete="off"
               value={this.state.second_example}
               onChange={this.onChangeSecondExample}
               name="example2"
@@ -183,7 +185,7 @@ export default class AddExpression extends Component<Props, State> {
               type="text"
               className="form-control"
               id="example3"
-              required
+              autoComplete="off"
               value={this.state.third_example}
               onChange={this.onChangeThirdExample}
               name="example3"
@@ -195,7 +197,7 @@ export default class AddExpression extends Component<Props, State> {
               type="text"
               className="form-control"
               id="example4"
-              required
+              autoComplete="off"
               value={this.state.fourth_example}
               onChange={this.onChangeFourthExample}
               name="example4"

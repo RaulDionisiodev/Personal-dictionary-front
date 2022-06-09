@@ -76,6 +76,8 @@ export default class Dictionary extends Component<Props, State>{
   render() {
     const { searchText, expression, currentExpression, currentIndex } = this.state;
     return (
+      <>
+      {expression.length > 0 ? (
       <div className="list row">
         <div className="col-md-8">
           <div className="input-group mb-3">
@@ -162,7 +164,14 @@ export default class Dictionary extends Component<Props, State>{
             </div>
           )}
         </div>
+      </div>) : (
+        <div className="jumbotron jumbotron-fluid">
+        <div className="container">
+          <p className="lead">Log in, insert words and let's study!</p>
+        </div>
       </div>
+      )}
+      </>
     );
   }
 }

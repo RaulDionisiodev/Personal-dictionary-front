@@ -43,6 +43,7 @@ export default class Login extends Component<Props, State> {
 
     AuthService.login(username, password).then(
       () => {
+        alert("Logged successfully")
         this.props.history.push("/home");
         window.location.reload();
       },
@@ -79,7 +80,7 @@ export default class Login extends Component<Props, State> {
             validationSchema={this.validationSchema}
             onSubmit={this.handleLogin}
           >
-            <Form>
+            <Form autoComplete="off">
               <div className="form-group">
                 <label htmlFor="username">Username</label>
                 <Field name="username" type="text" className="form-control" />
