@@ -1,5 +1,5 @@
 import { Component } from "react";
-import { Switch , Route, Link } from "react-router-dom";
+import { Switch, Route, Link } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
 import AuthService from "./services/Auth.service";
@@ -10,9 +10,10 @@ import EventBus from "./common/EventBus";
 import AddExpression from "./components/Add-Expression.component";
 import Dictionary from "./components/Dictionary.component";
 import ExpressionDetail from "./components/Expression.component";
+import Home from "./components/Home.component";
 type Props = {};
 type State = {
-  showModeratorBoard: boolean,
+  isLoggedUser: boolean,
   showAdminBoard: boolean,
   currentUser: IUser | undefined
 }
@@ -22,6 +23,12 @@ class App extends Component<Props, State> {
     this.logOut = this.logOut.bind(this);
   }
   componentDidMount() {
+    const user = AuthService.getCurrentUser();
+    if (user) {
+      this.setState({
+        isLoggedUser: true
+      })
+    }
     EventBus.on("logout", this.logOut);
   }
   componentWillUnmount() {
@@ -40,33 +47,38 @@ class App extends Component<Props, State> {
           </Link>
           <div className="navbar-nav mr-auto">
           <li className="nav-item">
+              <Link to={"/dictionary"} className="nav-link">
+                Dictionary
+              </Link>
+            </li>
+            <li className="nav-item">
               <Link to={"/add"} className="nav-link">
                 Add
               </Link>
             </li>
           </div>
           <div className="navbar-nav ml-auto">
-              <li className="nav-item">
-                <Link to={"/login"} className="nav-link">
-                  Login
-                </Link>
-              </li>
-              <li className="nav-item">
-                <Link to={"/register"} className="nav-link">
-                  Sign Up
-                </Link>
-              </li>
-            </div>
+            <li className="nav-item">
+              <Link to={"/login"} className="nav-link">
+                Login
+              </Link>
+            </li>
+            <li className="nav-item">
+              <Link to={"/register"} className="nav-link">
+                Sign Up
+              </Link>
+            </li>
+          </div>
         </nav>
         <div className="container mt-3">
           <Switch >
-            <Route exact path={["/", "/home"]} component={Dictionary} />
+            <Route exact path={["/", "/home"]} component={Home} />
             <Route exact path="/login" component={Login} />
             <Route exact path="/register" component={Register} />
             <Route exact path="/dictionary" component={Dictionary} />
             <Route exact path="/add" component={AddExpression} />
             <Route path="/expressions/:id" component={ExpressionDetail} />
-        </Switch >
+          </Switch >
         </div>
         { /*<AuthVerify logOut={this.logOut}/> */}
       </div>

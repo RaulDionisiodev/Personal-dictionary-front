@@ -44,7 +44,7 @@ export default class Login extends Component<Props, State> {
     AuthService.login(username, password).then(
       () => {
         alert("Logged successfully")
-        this.props.history.push("/home");
+        this.props.history.push("/dictionary");
         window.location.reload();
       },
       error => {

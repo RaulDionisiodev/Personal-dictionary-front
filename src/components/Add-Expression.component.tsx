@@ -86,7 +86,7 @@ export default class AddExpression extends Component<Props, State> {
           text: response.data.text,
           translation: response.data.translation,
         });
-        this.props.history.push("/home");
+        this.props.history.push("/dictionary");
       })
       .catch((e: Error) => {
         console.log(e);
