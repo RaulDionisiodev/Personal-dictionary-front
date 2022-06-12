@@ -38,8 +38,8 @@ export default class Register extends Component<Props, State> {
             val.toString().length <= 20
         )
         .required("This field is required!"),
-      email: Yup.string()
-        .email("This is not a valid email.")
+      name: Yup.string()
+        //.email("This is not a valid email.")
         .required("This field is required!"),
       password: Yup.string()
         .test(
@@ -82,11 +82,12 @@ export default class Register extends Component<Props, State> {
         this.props.history.push("/login");
       },
       error => {
+        console.log(error)
         const resMessage =
           (error.response &&
             error.response.data &&
             error.response.data.message) ||
-          error.message ||
+          error.response.data.message || error.message ||
           error.toString();
         this.setState({
           successful: false,
@@ -142,6 +143,7 @@ export default class Register extends Component<Props, State> {
                       id="password"
                       name="password"
                       type="password"
+                      autoComplete="off"
                       className="form-control"
                     />
                     <ErrorMessage
